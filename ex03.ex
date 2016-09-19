@@ -54,10 +54,12 @@ defmodule Ex03 do
   be used if needed.)
 
   """
+  
 
-  def odd_even . . . "your code"
+def odd_even([head|tail]), do: [if(Integer.is_even(head), do: :even, else: :odd)| odd_even(tail)]
+def odd_even([]), do: []
 
-
+  
   ##############################################################################
   # 3.2:  5 points #
   ##################
@@ -77,11 +79,15 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+def list_contains([],n), do: []
+def list_contains([head|tail],n), do: if((head==n), do: true, else: list_contains(tail,n))
 
-  ##############################################################################
-  # 3.3:  5 points #
-  ##################
+
+
+      ##############################################################################
+        # 3.3:  5 points #
+	  ##################
+
 
   @doc """
   Two lists are equal if they contain the same number of elements,
@@ -101,7 +107,7 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+def list_equal([head|tail],[head1|tail1]), do: if(([head|tail] != [head1|tail1]), do: false, else: true)
 
 
 
@@ -147,13 +153,48 @@ defmodule Ex03 do
       false
 
   Think a little about a nice way to lay this code out.
-  """
+ """
+def won({a,b,c,d,e,f,g,h,i}) do
+  cond do
+     (a==d)&&(a==g)&&(a==:x) ->
+        :x
+	   (a==d)&&(a==g)&&(a==:o) ->
+	      :o
+	         (b==e)&&(b==h)&&(b==:x) ->
+		    :x
+		       (b==e)&&(b==h)&&(b==:o) ->
+		          :o
+			     (c==f)&&(c==i)&&(c==:x) ->
+			        :x
+				   (c==f)&&(c==i)&&(c==:o) ->
+				      :o
+				         (a==e)&&(a==i)&&(a==:x) ->
+					    :x
+					       (a==e)&&(a==i)&&(a==:o) ->
+					          :o
+						     (c==e)&&(c==g)&&(c==:x) ->
+						        :x
+							   (c==e)&&(c==g)&&(c==:o) ->
+							      :o
+							         (a==b)&&(a==c)&&(a==:x) ->
+								    :x
+								       (a==b)&&(a==c)&&(a==:o) ->
+								          :o
+									     (d==e)&&(d==f)&&(d==:x) ->
+									        :x
+										   (d==e)&&(d==f)&&(d==:o) ->
+										      :o
+										         (g==h)&&(g==i)&&(g==:x) ->
+											    :x
+											       (g==h)&&(g==i)&&(g==:o) ->
+											          :o
+												     :error -> false
+												     true -> 
+												       end
+												       end
+												       												    
 
-  def won . . . "your code"
-
-
-  ###########################
-  # IGNORE FROM HERE TO END #
+ #IGNORE FROM HERE TO END #
   ###########################
 
   @after_compile __MODULE__
@@ -164,6 +205,20 @@ defmodule Ex03 do
 
 end
 
+
+ Ex03.odd_even [ 1, 2, 4, 7, 9 ]
+
+ Ex03.list_contains([ 1, 2, 3, 4], 3)
+ Ex03.list_contains([ 1, 2, 3, 4], 3)
+ Ex03.list_contains([ 1, 2, 3, 4], 3)
+
+ Ex03.list_equal [ 1, 2, 3 ], [1, 2, 3]
+ Ex03.list_equal [ 1, 2, 3 ], [1, 2, 3, 4]
+ Ex03.list_equal [ 1, 2, 3 ], [3, 2, 1]
+ 
+ Ex03.won { :x, :o, 3,   :x, 5, :o,   :x, 8, :o }
+ Ex03.won { :o, :x, 3,   :x, :o, 6,   :x, 5, :o }
+ Ex03.won { :o, :x, 3,   :x, :o, 6,   :x, :o, 9 }
 
 ExUnit.start
 defmodule TestEx03 do
